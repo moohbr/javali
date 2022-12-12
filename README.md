@@ -90,3 +90,6 @@ Se tiver alguma dúvida, abra um issue e responderemos assim que possível.
 ## Autores
 
 - [@moohbr](https://www.github.com/moohbr)
+- [@davirodriguesp](https://github.com/davirodriguesp)
+- [davi-oliver](https://github.com/davi-oliver)
+- [Ldias18](https://github.com/Ldias18)
