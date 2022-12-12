@@ -1,11 +1,10 @@
 # Javali
 
-Javali é um programa leve e gratuito que procura reduzir a dificuldade na monitoração das
-infraestruturas de sites, tendo como um de seus princípios a simplicidade e eficiência.
+Javali é um programa leve e gratuito que procura reduzir a dificuldade na monitoração das infraestruturas de sites, tendo como um de seus princípios a simplicidade e eficiência.
 
 ## Features:
 
-- [x] monitoração do seu site.
+- [x] Monitoração do seu site.
 - [x] Monitoração do seu site com um intermediário personalizado.
 - [x] Notifica quando o site está offline.
 
