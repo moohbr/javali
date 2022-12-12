@@ -75,7 +75,7 @@ Se tiver alguma dúvida, abra um issue e responderemos assim que possível.
 ## Dependencias utilizadas
 
 - [Lombok](https://projectlombok.org/)
-- [SQLite](github.com/mattn/go-sqlite3)
+- [SQLite](https://github.com/mattn/go-sqlite3)
 - [Sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
 - [Log4j](https://logging.apache.org/log4j/2.x/)
 - [Picocli](https://picocli.info/)
