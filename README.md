@@ -1,8 +1,9 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/moohbr/WebMonitor.svg)](https://pkg.go.dev/github.com/moohbr/WebMonitor)
+
 # WebMonitor
 
-Webmonitor é um programa leve e gratuito que procura reduzir a dificuldade na monitoração das infraestruturas de sites, tendo como um de seus princípios a simplicidade e eficiência.
-
+Webmonitor é um programa leve e gratuito que procura reduzir a dificuldade na monitoração das
+infraestruturas de sites, tendo como um de seus princípios a simplicidade e eficiência.
 
 ## Features:
 
@@ -16,7 +17,6 @@ Webmonitor é um programa leve e gratuito que procura reduzir a dificuldade na m
 - [ ] Criar uma interface web para o gerenciamento do programa
 - [ ] Perfil de usuparios e autenticação.
 
-
 ## Contribuindo
 
 É possível contribuir com esse projeto de duas maneiras:
@@ -26,13 +26,15 @@ Webmonitor é um programa leve e gratuito que procura reduzir a dificuldade na m
 
 ## Licença
 
-Esse projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
+Esse projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais
+detalhes.
 
 ## Documentação
+
 ### Environment Variables
 
-Para executar esse projeto, você precisará adicionar as seguintes environment variables no seu arquivo `.env`:
+Para executar esse projeto, você precisará adicionar as seguintes environment variables no seu
+arquivo `.env`:
 
 - `SMPT_SERVER` - SMTP server address
 - `SMTP_PORT` - SMTP server port
@@ -60,7 +62,6 @@ Flags:
 
 ### Instalação
 
-
 #### Manual:
 
 1. Clone o repositório
@@ -68,7 +69,6 @@ Flags:
 3. Execute o script com `WebMonitor`
 
 ### Uso
-
 
 #### Manual
 
@@ -81,11 +81,11 @@ Se tiver alguma dúvida, abra um issue e responderemos assim que possível.
 
 ## Agradecimentos
 
- - [Lombok](https://projectlombok.org/)
- - [SQLite](github.com/mattn/go-sqlite3)
- - [Sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
- - [Log4j](https://logging.apache.org/log4j/2.x/)
- - [Picocli](https://picocli.info/)
+- [Lombok](https://projectlombok.org/)
+- [SQLite](github.com/mattn/go-sqlite3)
+- [Sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
+- [Log4j](https://logging.apache.org/log4j/2.x/)
+- [Picocli](https://picocli.info/)
 
 ## Autores
 

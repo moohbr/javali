@@ -1,7 +1,6 @@
 package br.unifei.imc.bin.cli.remove;
 
 
-import br.unifei.imc.infrastructure.cache.Cache;
 import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
 import picocli.CommandLine;

@@ -1,12 +1,10 @@
 package br.unifei.imc.bin.cli.show;
 
-import br.unifei.imc.data.users.User;
 import br.unifei.imc.infrastructure.database.Database;
 import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
 import dnl.utils.text.table.TextTable;
 import java.lang.reflect.Field;
-
 import java.util.List;
 import picocli.CommandLine;
 
@@ -15,6 +13,7 @@ import picocli.CommandLine;
     usageHelpWidth = 100, abbreviateSynopsis = true, sortOptions = false)
 
 public class Users implements Runnable {
+
   final Field[] userField = br.unifei.imc.data.users.User.class.getDeclaredFields();
 
   @Override
@@ -36,7 +35,6 @@ public class Users implements Runnable {
     }
 
     String[][] data = new String[userList.size()][userField.length];
-
 
     for (int i = 0; i < userList.size(); i++) {
       for (int j = 0; j < userField.length; j++) {

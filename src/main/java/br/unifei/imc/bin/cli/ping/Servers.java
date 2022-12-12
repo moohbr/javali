@@ -4,8 +4,8 @@ import br.unifei.imc.data.servers.Server;
 import br.unifei.imc.infrastructure.database.Database;
 import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
-import java.util.List;
 import java.net.InetAddress;
+import java.util.List;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "servers", mixinStandardHelpOptions = true, version = "1.0",
@@ -28,14 +28,17 @@ public class Servers implements Runnable {
       try {
         InetAddress address = InetAddress.getByName(server.getHostname());
         if (address.isReachable(5000)) {
-          Dlog.log(this.getClass(), Options.INFO, "Server " + server.getHostname() + " is reachable");
+          Dlog.log(this.getClass(), Options.INFO, "Server " + server.getHostname()
+              + " is reachable");
           Database.updateServerStatus(server.getHostname(), 200);
         } else {
-          Dlog.log(this.getClass(), Options.INFO, "Server " + server.getHostname() + " is not reachable");
+          Dlog.log(this.getClass(), Options.INFO, "Server " + server.getHostname()
+              + " is not reachable");
           Database.updateServerStatus(server.getHostname(), 500);
         }
       } catch (Exception e) {
-        Dlog.log(this.getClass(), Options.ERROR, "Error pinging server " + server.getHostname());
+        Dlog.log(this.getClass(), Options.ERROR, "Error pinging server "
+            + server.getHostname());
       }
 
     }

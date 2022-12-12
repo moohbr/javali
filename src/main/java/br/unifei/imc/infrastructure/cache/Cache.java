@@ -15,8 +15,6 @@ public final class Cache {
   private static final String CACHE_FILE = "cache.json";
   private static final Gson gson = new Gson();
 
-  private static HashMap<String, String> cache = load();
-
   private Cache() {
     // The following code emulates slow initialization.
     try {
@@ -24,9 +22,7 @@ public final class Cache {
     } catch (InterruptedException ex) {
       ex.printStackTrace();
     }
-  }
-
-
+  }  private static HashMap<String, String> cache = load();
 
   private static HashMap<String, String> load() {
     try {
@@ -74,4 +70,6 @@ public final class Cache {
     Dlog.log(Cache.class, Options.INFO, "Removed " + key + " from cache");
     save();
   }
+
+
 }

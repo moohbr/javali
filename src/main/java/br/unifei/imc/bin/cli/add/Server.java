@@ -2,7 +2,6 @@ package br.unifei.imc.bin.cli.add;
 
 import br.unifei.imc.data.users.Administrator;
 import br.unifei.imc.data.users.Types;
-import br.unifei.imc.data.users.User;
 import br.unifei.imc.infrastructure.cache.Cache;
 import br.unifei.imc.infrastructure.database.Database;
 import br.unifei.imc.infrastructure.log.Dlog;
@@ -63,8 +62,8 @@ public class Server implements Runnable {
     try {
       Administrator administrator = (Administrator) Factory.createUser(Types.Administrator);
       administrator.addNewServer(hostname, url, ip, port, monitor);
-    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-        InstantiationException | IllegalAccessException e) {
+    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException
+             | InstantiationException | IllegalAccessException e) {
       Dlog.log(getClass(), Options.ERROR, e.getMessage());
     }
   }

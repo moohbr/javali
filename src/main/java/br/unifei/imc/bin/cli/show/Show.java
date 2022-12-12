@@ -5,5 +5,6 @@ import picocli.CommandLine;
 
 @CommandLine.Command(name = "show", mixinStandardHelpOptions = true, version = "1.0",
     description = "Show servers or users", subcommands = {Users.class, Server.class})
-public class Show extends Command implements Runnable{
+public class Show extends Command implements Runnable {
+
 }

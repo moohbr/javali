@@ -18,14 +18,14 @@ import java.sql.Statement;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+
 // Implements the singleton pattern
 public class Database {
 
-  private static Database instance;
-  private static Connection connection;
-
   private static final String databaseName = Configuration.getEnvironmentVariable(
       EnvironmentVariables.SQL_FILE_NAME);
+  private static Database instance;
+  private static Connection connection;
 
   private Database() {
     try {
@@ -173,7 +173,6 @@ public class Database {
           "SELECT * FROM servers WHERE hostname = '" + hostname + "'" + " OR url = '" + url + "'"
               + " OR ip = '" + ip + "'";
       ResultSet resultSet = statement.executeQuery(query);
-
 
       if (resultSet.next()) {
         Dlog.log(Database.class, Options.ERROR, "Server already exists");
@@ -395,7 +394,6 @@ public class Database {
         return null;
       }
 
-
       Dlog.log(Database.class, Options.INFO, "Users " + email + " loaded successfully.");
 
       ArrayList<String> user = new ArrayList<>();
@@ -455,7 +453,7 @@ public class Database {
     return null;
   }
 
-  public static void createAdministrator(){
+  public static void createAdministrator() {
     try {
       Statement statement = connection.createStatement();
       // query if user not exists

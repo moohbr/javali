@@ -7,8 +7,6 @@ import br.unifei.imc.infrastructure.cache.Cache;
 import br.unifei.imc.infrastructure.database.Database;
 import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
-
-
 import br.unifei.imc.utils.factory.Factory;
 import java.lang.reflect.InvocationTargetException;
 import picocli.CommandLine;
@@ -56,8 +54,8 @@ public class User implements Runnable {
     try {
       Administrator administrator = (Administrator) Factory.createUser(Types.Administrator);
       administrator.addNewUser(name, email, password, type);
-    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-             InstantiationException | IllegalAccessException e) {
+    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException
+             | InstantiationException | IllegalAccessException e) {
       Dlog.log(getClass(), Options.ERROR, "Error getting a user");
     }
   }

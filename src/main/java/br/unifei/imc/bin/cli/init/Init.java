@@ -8,9 +8,10 @@ import picocli.CommandLine;
     subcommands = {Database.class}, mixinStandardHelpOptions = true, version = "1.0")
 
 public class Init extends Command implements Callable<Integer> {
-    @Override
-    public Integer call() {
-      return 0;
-    }
+
+  @Override
+  public Integer call() {
+    return 0;
+  }
 }
 

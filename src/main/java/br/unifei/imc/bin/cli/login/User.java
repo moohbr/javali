@@ -13,6 +13,7 @@ import picocli.CommandLine;
     usageHelpWidth = 100, abbreviateSynopsis = true, sortOptions = false)
 
 public class User extends Command implements Runnable {
+
   @CommandLine.Option(names = {"-e", "--email"}, description = "User email", required = true)
   private String email;
 
@@ -21,7 +22,7 @@ public class User extends Command implements Runnable {
 
   @Override
   public void run() {
-    boolean logged =   Database.login(email, password);
+    boolean logged = Database.login(email, password);
     if (logged) {
       Dlog.log(this.getClass(), Options.INFO, "Login successful");
       Cache.put("user", email);

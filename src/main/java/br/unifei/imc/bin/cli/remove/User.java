@@ -1,6 +1,5 @@
 package br.unifei.imc.bin.cli.remove;
 
-import br.unifei.imc.data.users.Administrator;
 import br.unifei.imc.infrastructure.cache.Cache;
 import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
@@ -33,8 +32,7 @@ public class User implements Runnable {
       return;
     }
 
-   // Administrator administrator = (Administrator) cachedUser;
-
+    // Administrator administrator = (Administrator) cachedUser;
 
   }
 

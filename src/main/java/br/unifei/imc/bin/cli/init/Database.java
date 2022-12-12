@@ -3,13 +3,14 @@ package br.unifei.imc.bin.cli.init;
 import br.unifei.imc.infrastructure.cache.Cache;
 import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
-
 import picocli.CommandLine;
+
 @CommandLine.Command(name = "database", mixinStandardHelpOptions = true, version = "1.0",
     description = "Initialize the database", helpCommand = true, usageHelpAutoWidth = true,
     usageHelpWidth = 100, abbreviateSynopsis = true, sortOptions = false)
-public class Database implements Runnable{
-  public void run(){
+public class Database implements Runnable {
+
+  public void run() {
     Dlog.log(getClass(), Options.INFO, "Initializing the database");
     try {
       br.unifei.imc.infrastructure.database.Database.initialize();
