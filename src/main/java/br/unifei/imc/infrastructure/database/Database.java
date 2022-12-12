@@ -2,8 +2,9 @@ package br.unifei.imc.infrastructure.database;
 
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.unifei.imc.data.users.User;
 import br.unifei.imc.data.DataTypes;
 
 import br.unifei.imc.infrastructure.configuration.Configuration;
@@ -41,18 +42,6 @@ public class Database {
         }
     }
 
-    public static Connection getConnection() {
-        return connection;
-    }
-
-    public static void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            DLog.log(Database.class, Options.ERROR, e.getMessage());
-        }
-    }
-
     public static void initializeTables(){
         DLog.log(Database.class, Options.INFO, "Initializing tables...");
         try {
@@ -86,10 +75,8 @@ public class Database {
 
 
             statement.close();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             DLog.log(Database.class, Options.ERROR, e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -137,4 +124,198 @@ public class Database {
         }
     }
 
+    public static void changeUserPassword(String name, String oldPassword, String newPassword) {
+        try{
+            Statement statement = connection.createStatement();
+            // query if user exists
+            String query = "SELECT * FROM users WHERE name = '" + name + "'" + " AND password = '" + oldPassword + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "User does not exists");
+                return;
+            }
+
+            query = "UPDATE users SET password = '" + newPassword + "' WHERE name = '" + name + "'";
+
+            statement.executeUpdate(query);
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "User " + name + " password changed successfully.");
+        } catch (Exception e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+        }
+    }
+
+    public static void addServer(String hostname, String url, String ip, Integer port, Boolean monitor){
+        try {
+            Statement statement = connection.createStatement();
+            // query if user not exists
+            String query = "SELECT * FROM servers WHERE hostname = '" + hostname + "'" + " OR url = '" + url + "'" + " OR ip = '" + ip + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "Server already exists");
+                return;
+            }
+
+            query = "INSERT INTO servers (hostname, url, ip, port, monitor) VALUES ('" + hostname + "', '" + url + "', '" + ip + "', '" + port + "', '" + monitor + "')";
+
+            statement.executeUpdate(query);
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "Server " + hostname + " added successfully.");
+        } catch (SQLException e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+        }
+    }
+
+    public static void removeServer(String name) {
+        try {
+            Statement statement = connection.createStatement();
+            // query if user not exists
+            String query = "SELECT * FROM servers WHERE name = '" + name + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "Server does not exists");
+                return;
+            }
+
+            query = "DELETE FROM servers WHERE name = '" + name + "'";
+
+            statement.executeUpdate(query);
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "Server " + name + " removed successfully.");
+        } catch (SQLException e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+        }
+    }
+
+    public static void updateServer(String name, String password) {
+        try {
+            Statement statement = connection.createStatement();
+            // query if user not exists
+            String query = "SELECT * FROM servers WHERE name = '" + name + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "Server does not exists");
+                return;
+            }
+
+            query = "UPDATE servers SET password = '" + password + "' WHERE name = '" + name + "'";
+
+            statement.executeUpdate(query);
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "Server " + name + " updated successfully.");
+        } catch (SQLException e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+        }
+    }
+
+    public static void changeUserName(String email, String oldName, String newName) {
+        try{
+            Statement statement = connection.createStatement();
+            // query if user exists
+            String query = "SELECT * FROM users WHERE name = '" + oldName + "'" + " AND email = '" + email + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "User does not exists");
+                return;
+            }
+
+            query = "UPDATE users SET name = '" + newName + "' WHERE name = '" + oldName + "'";
+
+            statement.executeUpdate(query);
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "User " + oldName + " name changed successfully.");
+        } catch (Exception e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+        }
+    }
+
+    public static void changeUserEmail(String email, String oldEmail, String newEmail) {
+        try{
+            Statement statement = connection.createStatement();
+            // query if user exists
+            String query = "SELECT * FROM users WHERE email = '" + oldEmail + "'" + " AND email = '" + email + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "User does not exists");
+                return;
+            }
+
+            query = "UPDATE users SET email = '" + newEmail + "' WHERE email = '" + oldEmail + "'";
+
+            statement.executeUpdate(query);
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "User " + oldEmail + " email changed successfully.");
+        } catch (Exception e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+        }
+    }
+
+    public static boolean login(String email, String password){
+        try {
+            Statement statement = connection.createStatement();
+            // query if user not exists
+            String query = "SELECT * FROM users WHERE email = '" + email + "'" + " AND password = '" + password + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "User does not exists");
+                return false;
+            }
+
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "User " + email + " logged in successfully.");
+            return true;
+        } catch (SQLException e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+            return false;
+        }
+    }
+
+    public static List<String> getServers(){
+        List<String> servers = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            // query if user not exists
+            String query = "SELECT * FROM servers";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                servers.add(resultSet.getString("hostname"));
+            }
+
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "Servers list loaded successfully.");
+            return servers;
+        } catch (SQLException e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+            return null;
+        }
+    }
+
+    public static Boolean getServer(String hostname) {
+        try {
+            Statement statement = connection.createStatement();
+            // query if user not exists
+            String query = "SELECT * FROM servers WHERE hostname = '" + hostname + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                DLog.log(Database.class, Options.ERROR, "Server does not exists");
+                return false;
+            }
+
+            statement.close();
+            DLog.log(Database.class, Options.INFO, "Server " + hostname + " loaded successfully.");
+            return true;
+        } catch (SQLException e) {
+            DLog.log(Database.class, Options.ERROR, e.getMessage());
+            return false;
+        }
+    }
 }

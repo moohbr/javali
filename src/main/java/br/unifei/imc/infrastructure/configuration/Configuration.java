@@ -1,6 +1,5 @@
 package br.unifei.imc.infrastructure.configuration;
 
-import br.unifei.imc.infrastructure.configuration.EnvironmentVariables;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

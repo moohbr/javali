@@ -1,9 +1,12 @@
 package br.unifei.imc;
 
 import br.unifei.imc.bin.cli.Command;
+import br.unifei.imc.data.users.User;
 import br.unifei.imc.utils.factory.Factory;
 import br.unifei.imc.bin.cli.CommandsAvailable;
 import br.unifei.imc.infrastructure.database.Database;
+
+import br.unifei.imc.data.users.Types;
 
 import picocli.CommandLine;
 

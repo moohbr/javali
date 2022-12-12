@@ -2,6 +2,7 @@ package br.unifei.imc.infrastructure.log;
 
 import org.apache.log4j.Logger;
 
+// Singleton
 public final class DLog {
     private static DLog instance;
 

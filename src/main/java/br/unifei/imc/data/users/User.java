@@ -17,4 +17,8 @@ public class User {
 
     @Getter @Setter private long lastNotification;
 
+
+    public User() {
+    }
+
 }

@@ -10,5 +10,8 @@
         <module name="javali" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="javali" target="18" />
+    </bytecodeTargetLevel>
   </component>
 </project>
