@@ -1,23 +1,16 @@
 package br.unifei.imc.bin.cli.init;
 
 import br.unifei.imc.bin.cli.Command;
-import br.unifei.imc.infrastructure.log.DLog;
-import br.unifei.imc.infrastructure.log.Options;
-import br.unifei.imc.infrastructure.database.Database;
-
+import java.util.concurrent.Callable;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "init", mixinStandardHelpOptions = true, version = "1.0", description = "Init the project")
+@CommandLine.Command(name = "init", description = "Initialize the database and cache",
+    subcommands = {Database.class}, mixinStandardHelpOptions = true, version = "1.0")
 
-public class Init extends Command implements Runnable {
-    public void run() {
-        DLog.log(getClass(), Options.INFO, "Initializing the database");
-        try{
-            Database.initialize();
-        } catch (Exception e) {
-            DLog.log(getClass(), Options.ERROR, "Error initializing the database");
-            DLog.log(getClass(), Options.ERROR, e.getMessage());
-        }
+public class Init extends Command implements Callable<Integer> {
+    @Override
+    public Integer call() {
+      return 0;
     }
 }
 

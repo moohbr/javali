@@ -3,26 +3,27 @@ package br.unifei.imc.data.users;
 
 import br.unifei.imc.infrastructure.database.Database;
 
-public class Viewer extends User implements IViewer {
+public class Viewer extends User implements Iviewer {
 
-    IViewer viewer;
+  final Iviewer viewer;
 
-    public Viewer(){
-        viewer = new LoginPa();
-    }
-    @Override
-    public void updateOwnPassword(String oldPassword, String newPassword) {
-        Database.changeUserPassword(this.getEmail(), oldPassword, newPassword);
-    }
+  public Viewer() {
+    viewer = new LoginPa();
+  }
 
-    @Override
-    public void updateOwnName(String oldName, String newName) {
-        Database.changeUserName(this.getEmail(), oldName, newName);
-    }
+  @Override
+  public void updateOwnPassword(String oldPassword, String newPassword) {
+    Database.changeUserPassword(this.getEmail(), oldPassword, newPassword);
+  }
 
-    @Override
-    public void updateOwnEmail(String oldEmail, String newEmail) {
-        Database.changeUserEmail(this.getEmail(), oldEmail, newEmail);
-    }
+  @Override
+  public void updateOwnName(String oldName, String newName) {
+    Database.changeUserName(this.getEmail(), oldName, newName);
+  }
+
+  @Override
+  public void updateOwnEmail(String oldEmail, String newEmail) {
+    Database.changeUserEmail(this.getEmail(), oldEmail, newEmail);
+  }
 }
 
