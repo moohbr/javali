@@ -81,11 +81,11 @@ Se tiver alguma dúvida, abra um issue e responderemos assim que possível.
 
 ## Agradecimentos
 
- - [Cobra](github.com/spf13/cobra)
+ - [Lombok](https://projectlombok.org/)
  - [SQLite](github.com/mattn/go-sqlite3)
- - [go-mail](github.com/go-mail/mail)
- - [go-dotenv](github.com/joho/godotenv)
-
+ - [Sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
+ - [Log4j](https://logging.apache.org/log4j/2.x/)
+ - [Picocli](https://picocli.info/)
 
 ## Autores
 
