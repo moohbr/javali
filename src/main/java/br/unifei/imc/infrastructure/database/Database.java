@@ -19,7 +19,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-// Implements the singleton pattern
 public class Database {
 
   private static final String databaseName = Configuration.getEnvironmentVariable(
@@ -193,11 +192,11 @@ public class Database {
     }
   }
 
-  public static void removeServer(String name) {
+  public static void removeServer(String hostname) {
     try {
       Statement statement = connection.createStatement();
       // query if user not exists
-      String query = "SELECT * FROM servers WHERE name = '" + name + "'";
+      String query = "SELECT * FROM servers WHERE hostname = '" + hostname + "'";
       ResultSet resultSet = statement.executeQuery(query);
 
       if (!resultSet.next()) {
@@ -205,11 +204,11 @@ public class Database {
         return;
       }
 
-      query = "DELETE FROM servers WHERE name = '" + name + "'";
+      query = "DELETE FROM servers WHERE hostname = '" + hostname + "'";
 
       statement.executeUpdate(query);
       statement.close();
-      Dlog.log(Database.class, Options.INFO, "Server " + name + " removed successfully.");
+      Dlog.log(Database.class, Options.INFO, "Server " + hostname + " removed successfully.");
     } catch (SQLException e) {
       Dlog.log(Database.class, Options.ERROR, e.getMessage());
     }
@@ -350,6 +349,9 @@ public class Database {
 
   public static Boolean getServer(String hostname) {
     try {
+      if (connection == null) {
+        connection = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
+      }
       Statement statement = connection.createStatement();
       // query if user not exists
       String query = "SELECT * FROM servers WHERE hostname = '" + hostname + "'";
@@ -492,12 +494,14 @@ public class Database {
         return;
       }
 
+
       String lastCheck = String.valueOf(Instant.now());
+      String query2 = "UPDATE servers SET lastStatus = " + status + ", lastCheck = '" + lastCheck
+          + "' WHERE hostname = '" + hostname + "'" + ";";
 
-      query = "UPDATE servers SET lastStatus = " + status + ", lastCheck = '" + lastCheck
-          + "' WHERE hostname = '" + hostname + "'";
+      System.out.println(query2);
 
-      statement.executeUpdate(query);
+      statement.executeUpdate(query2);
       statement.close();
       Dlog.log(Database.class, Options.INFO, "Server " + hostname
           + " status updated successfully.");

@@ -3,12 +3,21 @@ package br.unifei.imc.data.users;
 
 import br.unifei.imc.infrastructure.database.Database;
 
+/**
+ * Viewer class.
+ *
+ * @author @moohbr
+ *
+ * @version 1.0
+ * @since 1.0
+ * @see br.unifei.imc.infrastructure.database.Database
+ */
 public class Viewer extends User implements Iviewer {
 
   final Iviewer viewer;
 
   public Viewer() {
-    viewer = new LoginPa();
+    viewer = this;
   }
 
   @Override

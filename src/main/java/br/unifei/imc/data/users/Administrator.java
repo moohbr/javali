@@ -1,13 +1,21 @@
 package br.unifei.imc.data.users;
 
 import br.unifei.imc.infrastructure.database.Database;
-
+/**
+ * Viewer class.
+ *
+ * @author @moohbr
+ *
+ * @version 1.0
+ * @since 1.0
+ * @see br.unifei.imc.infrastructure.database.Database
+ */
 public class Administrator extends User implements Iadministrator, Iviewer {
 
   final Iviewer viewer;
 
   public Administrator() {
-    viewer = new LoginPa();
+    viewer = new Viewer();
   }
 
   @Override

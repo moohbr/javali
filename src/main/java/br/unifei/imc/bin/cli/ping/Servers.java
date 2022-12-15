@@ -18,7 +18,7 @@ public class Servers implements Runnable {
   public void run() {
     List<Server> listServers = Database.getServers();
 
-    if (listServers == null) {
+    if (listServers == null || listServers.isEmpty()) {
       Dlog.log(this.getClass(), Options.ERROR, "No servers found");
       return;
     }

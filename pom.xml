@@ -14,7 +14,7 @@
     <dependency>
       <artifactId>sqlite-jdbc</artifactId>
       <groupId>org.xerial</groupId>
-      <version>3.39.4.1</version>
+      <version>3.40.0.0</version>
     </dependency>
 
     <dependency>
@@ -22,6 +22,7 @@
       <groupId>io.github.cdimascio</groupId>
       <version>5.2.2</version>
     </dependency>
+
     <dependency>
       <artifactId>log4j-core</artifactId>
       <groupId>org.apache.logging.log4j</groupId>
@@ -57,6 +58,12 @@
       <artifactId>j-text-utils</artifactId>
       <groupId>com.massisframework</groupId>
       <version>0.3.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
     </dependency>
 
   </dependencies>

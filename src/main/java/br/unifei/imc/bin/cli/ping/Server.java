@@ -31,6 +31,8 @@ public class Server implements Runnable {
         Dlog.log(this.getClass(), Options.ERROR,
             "Error while pinging the server: " + e.getMessage());
       }
+    } else {
+      Dlog.log(this.getClass(), Options.ERROR, "Server not found");
     }
   }
 }

@@ -5,6 +5,7 @@ import br.unifei.imc.infrastructure.log.Dlog;
 import br.unifei.imc.infrastructure.log.Options;
 import dnl.utils.text.table.TextTable;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 import picocli.CommandLine;
 
@@ -25,6 +26,16 @@ public class Server implements Runnable {
       columnNames[i] = serverFields[i].getName();
     }
 
+    columnNames = new String[]{
+        "hostname",
+        "url",
+        "ip",
+        "port",
+        "lastStatus",
+        "lastCheck",
+        "lastUpdate",
+        "monitor"
+    };
     Dlog.log(getClass(), Options.INFO, "Showing servers");
 
     List<br.unifei.imc.data.servers.Server> serverList = Database.getServers();
@@ -35,27 +46,25 @@ public class Server implements Runnable {
     }
 
     String[][] data = new String[serverList.size()][serverFields.length];
+    System.out.println(Arrays.toString(serverFields));
 
     for (int i = 0; i < serverList.size(); i++) {
       for (int j = 0; j < serverFields.length; j++) {
         try {
           serverFields[j].setAccessible(true);
-          // Verify if the field is the password
-          if (serverFields[j].getName().equals("password")) {
-            data[i][j] = "********";
-            continue;
-          }
           if (serverFields[j].get(serverList.get(i)) != null) {
             data[i][j] = serverFields[j].get(serverList.get(i)).toString();
           } else {
             data[i][j] = "null";
           }
-        } catch (IllegalAccessException e) {
-          Dlog.log(getClass(), Options.ERROR, "Error getting server data");
-          data[i][j] = "N/A";
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+          Dlog.log(getClass(), Options.ERROR, "Error getting data from database");
         }
       }
     }
+
+
+
 
     TextTable table = new TextTable(columnNames, data);
 

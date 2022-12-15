@@ -23,13 +23,14 @@ public class Server {
   private Integer lastStatus;
   @Getter
   @Setter
-  private String lastUpdate;
+  private String monitor;
   @Getter
   @Setter
   private String lastCheck;
   @Getter
   @Setter
-  private String monitor;
+  private String lastUpdate;
+
 
   public Server(String hostname, String url, String ip, Integer port, String lastUpdate,
       String monitor) {

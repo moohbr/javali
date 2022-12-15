@@ -41,24 +41,34 @@ public class Main {
     *
     * @since 1.0
     */
-  public static void main(String[] args)
-      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-      InstantiationException, IllegalAccessException {
-    if (args.length == 0) {
-      System.out.println("JavaLI - Java Command Line Interface - v1.0");
+  public static void main(String[] args) {
+    try {
+      if (args.length == 0) {
+        System.out.println("JavaLI - Java Command Line Interface - v1.0");
 
-      Dlog.log(Main.class, Options.INFO, "You are current logged as: " + Cache.get("user"));
+        Dlog.log(Main.class, Options.INFO, "You are current logged as: " + Cache.get("user"));
 
-      return;
+        return;
+      }
+
+      if (args[0].equals("logout")) {
+        Cache.remove("user");
+        return;
+      }
+
+      String commandNameBrute = args[0];
+
+      String commandName = commandNameBrute.substring(0, 1).toUpperCase()
+          + commandNameBrute.substring(1);
+
+      CommandsAvailable command = CommandsAvailable.valueOf(commandName);
+
+      Command commandInstance = Factory.getCommand(command);
+
+      int rc = new CommandLine(commandInstance).execute(args);
+      System.exit(rc);
+    } catch (Exception e) {
+      Dlog.log(Main.class, Options.ERROR, e.getMessage());
     }
-
-    String commandName = args[0];
-
-    commandName = commandName.substring(0, 1).toUpperCase() + commandName.substring(1);
-    CommandsAvailable command = CommandsAvailable.valueOf(commandName);
-    Command commandInstance = Factory.getCommand(command);
-
-    int rc = new CommandLine(commandInstance).execute(args);
-    System.exit(rc);
   }
 }

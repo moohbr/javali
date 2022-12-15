@@ -1,6 +1,15 @@
 package br.unifei.imc.data.users;
 
-public interface Iadministrator { // Create things da vida
+/**
+ * Viewer class.
+ *
+ * @author @moohbr
+ *
+ * @version 1.0
+ * @since 1.0
+ * @see br.unifei.imc.infrastructure.database.Database
+ */
+public interface Iadministrator {
 
   void addNewUser(String name, String email, String password, String role);
 
