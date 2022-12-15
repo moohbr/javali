@@ -5,14 +5,8 @@ Javali é um programa leve e gratuito que procura reduzir a dificuldade na monit
 ## Features:
 
 - [x] Monitoração do seu site.
-- [x] Monitoração do seu site com um intermediário personalizado.
+- [x] Cadastramento de usuários.
 - [x] Notifica quando o site está offline.
-
-## Futuras features:
-
-- [ ] Notificação com um mensagem personalizada/intervalo personalizado/tempo limite personalizado
-- [ ] Criar uma interface web para o gerenciamento do programa
-- [ ] Perfil de usuparios e autenticação.
 
 ## Contribuindo
 
@@ -44,7 +38,6 @@ arquivo `.env`:
   add         Adiciona um novo site para ser monitorado ou usuário para notificar.
   remove      Remove um site ou usuário.
   update      Atualiza um site ou usuário.
-  help        Ajuda sobre qualquer comando.
 
 Use "Javali [command] --help" para mais informações sobre um comando.  
 
@@ -53,20 +46,12 @@ Flags:
   -v, --verbose   verbose output
 ```
 
-### Instalação
-
-#### Manual:
-
-1. Clone o repositório
-2. Instale todas as dependências com `go build`
-3. Execute o script com `Javali`
-
 ### Uso
 
 #### Manual
 
 1. Crie um arquivo `.env` .
-2. Instale as dependências com `go build` e execute o script com `javali`
+2. Execute o main com os argumentos
 
 ## Perguntas:
 
